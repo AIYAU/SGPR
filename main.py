@@ -12,20 +12,20 @@ import os
 
 
 
-class_names = ['Alternaria leaf spot', 'Blossom blight leaves', 'Brown spot', 'Grey spot', 'Health', 'Mosaic', 'Powdery mildew', 'Rust', 'Scab']
+# class_names = ['Alternaria leaf spot', 'Blossom blight leaves', 'Brown spot', 'Grey spot', 'Health', 'Mosaic', 'Powdery mildew', 'Rust', 'Scab']
 
 
-# class_names = [
-#     "This is a picture of an Alternaria leaf spot: Irregular brown/yellow spots, darker edges, black mold on underside, irregular lesion lesions.",
-#     "This is a picture of a Blossom blight leaves: Dark brown to dried yellow leaves, curled edges, wilting appearance, tissue degradation.",
-#     "This is a picture of a Brown spot leaves: Abundant yellowing leaves, brown/black lesions, noticeable edge damage, variable lesion size, leaf health compromised.",
-#     "This is a picture of a Grey spot leaves: Green leaves with irregular gray-brown spots, clear margins, speckled, mildew presence indicated.",
-#     "This is a picture of Healthy apple leaves: Vibrant green color, smooth texture, no disease spots, glossy, signs of optimal health.",
-#     "This is a picture of a Mosaic apple leaves: Mottled yellow/green pattern, uneven color, no distinct spots, leaf pattern disrupted.",
-#     "This is a picture of Powdery mildew leaves: White/gray powder, uneven color, full leaf coating, fuzzy.",
-#     "This is a picture of Rust apple leaves: Scattered orange-yellow/black spots, varied size/shape, slightly elevated.",
-#     "This is a picture of Scab apple leaves: Gray spots, indistinct edges, dark gray veins, variable size/shape, scarring."
-# ]
+class_names = [
+    "This is a picture of an Alternaria leaf spot: Irregular brown/yellow spots, darker edges, black mold on underside, irregular lesion lesions.",
+    "This is a picture of a Blossom blight leaves: Dark brown to dried yellow leaves, curled edges, wilting appearance, tissue degradation.",
+    "This is a picture of a Brown spot leaves: Abundant yellowing leaves, brown/black lesions, noticeable edge damage, variable lesion size, leaf health compromised.",
+    "This is a picture of a Grey spot leaves: Green leaves with irregular gray-brown spots, clear margins, speckled, mildew presence indicated.",
+    "This is a picture of Healthy apple leaves: Vibrant green color, smooth texture, no disease spots, glossy, signs of optimal health.",
+    "This is a picture of a Mosaic apple leaves: Mottled yellow/green pattern, uneven color, no distinct spots, leaf pattern disrupted.",
+    "This is a picture of Powdery mildew leaves: White/gray powder, uneven color, full leaf coating, fuzzy.",
+    "This is a picture of Rust apple leaves: Scattered orange-yellow/black spots, varied size/shape, slightly elevated.",
+    "This is a picture of Scab apple leaves: Gray spots, indistinct edges, dark gray veins, variable size/shape, scarring."
+]
 
 
 def main():
@@ -79,8 +79,8 @@ def main():
     optimizer = Adam(fine_network.parameters(), lr=0.001, weight_decay=1e-4)
     scheduler = MultiStepLR(optimizer, milestones=[30, 50], gamma=0.1)
 
-    log_file = "./results_yes_PA_no_TA/training_log.txt"
-    os.makedirs("./results_yes_PA_no_TA", exist_ok=True)
+    log_file = "./results/training_log.txt"
+    os.makedirs("./results", exist_ok=True)
     with open(log_file, "w") as f:
         f.write("Training and Evaluation Log\n")
         f.write("=" * 50 + "\n")
@@ -138,7 +138,7 @@ def main():
             prototypes=prototypes,
             epoch=epoch,
             device="cuda",
-            save_path="./results_yes_PA_no_TA",
+            save_path="./results",
             log_file=log_file
         )
         
@@ -147,3 +147,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
